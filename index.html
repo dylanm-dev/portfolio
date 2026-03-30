@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dylan McCreary - Portfolio</title>
+  <style>
+    :root {
+      --accent:    #1a56a0;
+      --accent-lt: #e8f0fb;
+      --accent-md: #3b7dd8;
+      --text:      #111827;
+      --muted:     #6b7280;
+      --border:    #e5e7eb;
+      --bg:        #f9fafb;
+      --white:     #ffffff;
+      --nav-h:     64px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ul { list-style: none; }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -.3px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+    section {
+      padding: 96px 48px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    section:first-of-type { padding-top: calc(var(--nav-h) + 96px); }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -.4px;
+      margin-bottom: 40px;
+      line-height: 1.2;
+    }
+
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: var(--nav-h);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .hero-name {
+      font-size: clamp(42px, 7vw, 68px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      margin-bottom: 18px;
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-tagline {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .15s;
+      border: 2px solid transparent;
+      text-decoration: none !important;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent-md); }
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .btn-outline:hover { background: var(--accent-lt); }
+
+    .hero-contact {
+      margin-top: 40px;
+      display: flex;
+      gap: 6px 24px;
+      flex-wrap: wrap;
+      font-size: 13.5px;
+      color: var(--muted);
+      align-items: center;
+    }
+    .hero-contact a { color: var(--muted); }
+    .hero-contact a:hover { color: var(--accent); }
+    .dot { opacity: .4; }
+
+    #about { border-top: 1px solid var(--border); }
+    .about-body {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #374151;
+      max-width: 680px;
+    }
+
+    #skills { border-top: 1px solid var(--border); }
+    .skills-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 28px;
+    }
+    .skill-cat h3 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .pill {
+      background: var(--accent-lt);
+      color: var(--accent);
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 4px;
+      border: 1px solid #c3d9f5;
+    }
+
+    #experience { border-top: 1px solid var(--border); }
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 2px;
+      background: var(--border);
+    }
+    .tl-entry { position: relative; margin-bottom: 40px; }
+    .tl-entry:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute;
+      left: -34px;
+      top: 6px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .tl-role {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .tl-company-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 2px;
+    }
+    .tl-company { font-size: 14px; font-weight: 600; color: var(--accent); }
+    .tl-dates {
+      font-size: 12.5px;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 2px 9px;
+      border-radius: 99px;
+    }
+    .tl-bullets {
+      margin-top: 10px;
+      padding-left: 18px;
+      list-style: disc;
+      color: #374151;
+    }
+    .tl-bullets li { margin-bottom: 5px; font-size: 14px; }
+    .tl-sub { margin-top: 22px; padding-top: 18px; border-top: 1px dashed var(--border); }
+    .tl-sub .tl-role { font-size: 14.5px; }
+
+    /* ─── Projects ────────────────────────────────────────── */
+    #projects { border-top: 1px solid var(--border); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .project-card:hover {
+      box-shadow: 0 8px 32px rgba(26,86,160,.12);
+      transform: translateY(-3px);
+    }
+    .project-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+    .project-name {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .project-name a { color: var(--text); }
+    .project-name a:hover { color: var(--accent); text-decoration: none; }
+    .project-desc {
+      font-size: 13.5px;
+      color: #4b5563;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 2px 9px;
+      border-radius: 4px;
+    }
+
+    #contact {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding-bottom: 120px;
+    }
+    #contact .section-title { margin-bottom: 16px; }
+    .contact-sub {
+      color: var(--muted);
+      margin-bottom: 32px;
+      font-size: 15px;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12.5px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 18px; }
+      section { padding: 64px 20px; }
+      #hero { padding: 20px; padding-top: var(--nav-h); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Dylan<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a href="resume.html" target="_blank">Resume ↗</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-eyebrow">Software Engineer</div>
+  <h1 class="hero-name">Dylan<br><span>McCreary</span></h1>
+  <p class="hero-tagline">
+    I build scalable backend systems and full-stack applications — specializing in Python,
+    Angular, and cloud-native infrastructure. Currently integrating AI agents at C&nbsp;Spire.
+  </p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View My Work</a>
+    <a href="resume.html" target="_blank" class="btn btn-outline">Open Resume</a>
+    <a href="https://www.linkedin.com/in/dylanmcc/" target="_blank" class="btn btn-outline">LinkedIn</a>
+  </div>
+  <div class="hero-contact">
+    <span>Jackson, MS</span>
+    <span class="dot">·</span>
+    <a href="mailto:bmccreary3525@gmail.com">bmccreary3525@gmail.com</a>
+    <span class="dot">·</span>
+    <a href="tel:+16014463544">+1 (601) 446-3544</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="section-title">Who I am</div>
+  <p class="about-body fade-in">
+    I'm a software engineer with <strong>5+ years of experience</strong> building backend and full-stack systems at C Spire,
+    Mississippi's largest privately-held telecom. I've gone from intern to Software Developer II owning projects
+    end-to-end along the way.
+  </p>
+  <br>
+  <p class="about-body fade-in">
+    My work spans modernizing legacy platforms (ASP.NET → Python/Angular, PERL → Python),
+    building AI agents with Microsoft Foundry, migrating Java services to Linux, and shipping real-time
+    analytics dashboards.
+  </p>
+  <br>
+  <p class="about-body fade-in">
+    Outside of work, I built <strong>TeamGap.gg</strong> a League of Legends counter-pick tool because I wanted
+    a problem I actually cared about solving.
+  </p>
+</section>
+
+<section id="skills">
+  <div class="section-label">Skills</div>
+  <div class="section-title">What I work with</div>
+  <div class="skills-categories fade-in">
+    <div class="skill-cat">
+      <h3>Languages</h3>
+      <div class="skill-pills">
+        <span class="pill">Python</span>
+        <span class="pill">TypeScript</span>
+        <span class="pill">Java</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Frameworks</h3>
+      <div class="skill-pills">
+        <span class="pill">Angular</span>
+        <span class="pill">Django</span>
+        <span class="pill">Flask</span>
+        <span class="pill">Spring Boot</span>
+        <span class="pill">Node.js</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Data & Messaging</h3>
+      <div class="skill-pills">
+        <span class="pill">PostgreSQL</span>
+        <span class="pill">REST APIs</span>
+        <span class="pill">Kafka</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>Infrastructure</h3>
+      <div class="skill-pills">
+        <span class="pill">Kubernetes</span>
+        <span class="pill">Podman</span>
+        <span class="pill">Linux</span>
+        <span class="pill">Nginx</span>
+        <span class="pill">Tomcat</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>AI & Tooling</h3>
+      <div class="skill-pills">
+        <span class="pill">Microsoft Foundry</span>
+        <span class="pill">AI Agents</span>
+        <span class="pill">OCR</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>DevOps</h3>
+      <div class="skill-pills">
+        <span class="pill">Git / GitLab</span>
+        <span class="pill">Jenkins</span>
+        <span class="pill">CI/CD</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <div class="section-title">Where I've worked</div>
+  <div class="timeline">
+
+    <!-- SD II -->
+    <div class="tl-entry fade-in">
+      <div class="tl-dot"></div>
+      <div class="tl-role">Software Developer II</div>
+      <div class="tl-company-line">
+        <span class="tl-company">C Spire</span>
+        <span class="tl-dates">Feb 2026 – Present</span>
+      </div>
+      <ul class="tl-bullets">
+        <li>Designed and deployed a Python AI agent using Microsoft Foundry OCR on documents, natural language PDF querying, image analysis, and external tool integration.</li>
+        <li>Built an automated provisioning retry tool, eliminating manual resubmission across the infrastructure team.</li>
+      </ul>
+
+      <!-- SD I -->
+      <div class="tl-sub">
+        <div class="tl-role">Software Developer I</div>
+        <div class="tl-company-line">
+          <span class="tl-dates">Aug 2023 – Feb 2026</span>
+        </div>
+        <ul class="tl-bullets">
+          <li>Led the full rewrite of a legacy ASP.NET platform to Python + Angular, improving performance by <strong>200%</strong>.</li>
+          <li>Integrated an AI agent into internal job scheduling, enabling natural language data analysis.</li>
+          <li>Migrated 12 Java services from Windows to Linux with Oracle DB refactoring and load balancing optimization.</li>
+          <li>Designed a real-time analytics dashboard delivering <strong>10× faster data throughput</strong>.</li>
+          <li>Integrated TiVo services into the telecom provisioning workflow cross-functionally.</li>
+          <li>Established Python development standards; led GitLab code reviews team-wide.</li>
+        </ul>
+      </div>
+
+      <!-- Junior -->
+      <div class="tl-sub">
+        <div class="tl-role">Junior Software Developer</div>
+        <div class="tl-company-line">
+          <span class="tl-dates">Nov 2021 – Aug 2023</span>
+        </div>
+        <ul class="tl-bullets">
+          <li>Modernized a Django app into an Angular frontend with LDAP-based SSO.</li>
+          <li>Built Python + Jenkins automation scripts eliminating <strong>5+ hrs/week</strong> of manual work.</li>
+          <li>Rewrote a large PERL codebase in Python with no prior PERL experience.</li>
+          <li>Configured Tomcat across dev/test/prod environments; authored <strong>30+ RFCs</strong> in Jira.</li>
+        </ul>
+      </div>
+
+      <!-- Intern -->
+      <div class="tl-sub">
+        <div class="tl-role">Software Engineering Intern</div>
+        <div class="tl-company-line">
+          <span class="tl-dates">Aug 2021 – Nov 2021</span>
+        </div>
+        <ul class="tl-bullets">
+          <li>Built an Angular + Python CMS search and export tool, cutting processing time by <strong>50%</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="tl-entry fade-in">
+      <div class="tl-dot" style="background:#9ca3af; box-shadow: 0 0 0 2px #9ca3af;"></div>
+      <div class="tl-role">Software Development Certification</div>
+      <div class="tl-company-line">
+        <span class="tl-company">Base Camp Coding Academy</span>
+        <span class="tl-dates">Jun 2020 – Aug 2021</span>
+      </div>
+      <ul class="tl-bullets">
+        <li>Intensive 11-month, 40+ hr/week immersive program in software development and professional practices.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <div class="section-title">Things I've built</div>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in">
+      <div class="project-icon">🎮</div>
+      <div class="project-name">TeamGap.gg</div>
+      <p class="project-desc">
+        A League of Legends counter-pick tool that scrapes champion matchup data and pulls live match info
+        via the Riot API — recommending optimal counters in real time. Auto-updates when a game patch drops.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Flask</span>
+        <span class="tag">React</span>
+        <span class="tag">Riot API</span>
+        <span class="tag">Web Scraping</span>
+      </div>
+    </div>
+
+    <!-- Placeholder card for future projects -->
+    <div class="project-card fade-in" style="border-style: dashed; background: transparent; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; min-height:200px;">
+      <div style="font-size:28px; margin-bottom:10px; opacity:.3;">+</div>
+      <p style="color: var(--muted); font-size:13.5px;">More projects coming soon</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <div class="section-title">Let's work together</div>
+  <p class="contact-sub">I'm open to new opportunities. Feel free to reach out.</p>
+  <div class="contact-links">
+    <a href="mailto:bmccreary3525@gmail.com" class="btn btn-primary">
+      Send an Email
+    </a>
+    <a href="https://www.linkedin.com/in/dylanmcc/" target="_blank" class="btn btn-outline">
+      LinkedIn
+    </a>
+    <a href="resume.html" target="_blank" class="btn btn-outline">
+      Download Resume
+    </a>
+  </div>
+</section>
+
+<footer>
+  Built by Dylan McCreary &nbsp;·&nbsp; 2026
+</footer>
+
+<script>
+  // Intersection observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
