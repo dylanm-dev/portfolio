@@ -17,5 +17,5 @@ Plain HTML/CSS/JS — no build step, no dependencies.
 - **About** — Background and career overview
 - **Skills** — Languages, frameworks, infrastructure, and tooling
 - **Experience** — C Spire career progression (Intern → SD II) and education
-- **Projects** — TeamGap.gg (League of Legends counter-pick tool)
+- **Projects** — TeamGap.gg, AutoFlow, CSReplayViewer, LocalChat (screenshots in `images/`)
 - **Contact** — Email, LinkedIn, and resume links

@@ -265,6 +265,21 @@
       box-shadow: 0 8px 32px rgba(26,86,160,.12);
       transform: translateY(-3px);
     }
+    .project-shot {
+      display: block;
+      margin: -28px -28px 20px;
+      border-bottom: 1px solid var(--border);
+      border-radius: 10px 10px 0 0;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .project-shot img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      object-position: top;
+    }
     .project-icon {
       font-size: 28px;
       margin-bottom: 14px;
@@ -549,6 +564,9 @@
     </div>
 
     <div class="project-card fade-in">
+      <a class="project-shot" href="images/autoflow.png" target="_blank" rel="noopener">
+        <img src="images/autoflow.png" alt="AutoFlow pipeline dashboard" loading="lazy">
+      </a>
       <div class="project-icon">⚙️</div>
       <div class="project-name">AutoFlow</div>
       <p class="project-desc">
@@ -563,6 +581,46 @@
         <span class="tag">SQLAlchemy</span>
         <span class="tag">Docker</span>
         <span class="tag">Claude API</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <a class="project-shot" href="images/csreplayviewer.png" target="_blank" rel="noopener">
+        <img src="images/csreplayviewer.png" alt="CSReplayViewer playing back a CS2 round in 3D" loading="lazy">
+      </a>
+      <div class="project-icon">🎯</div>
+      <div class="project-name">CSReplayViewer</div>
+      <p class="project-desc">
+        A 3D replay viewer for Counter-Strike 2 demos. Upload a .dem file and it parses every round, then
+        plays it back on the map's radar with player models, a follow camera, bullet tracers, utility
+        markers, a kill feed and a live scoreboard, with full playback controls.
+      </p>
+      <div class="project-tags">
+        <span class="tag">React</span>
+        <span class="tag">Three.js</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">Express</span>
+        <span class="tag">Python</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <a class="project-shot" href="images/localchat.png" target="_blank" rel="noopener">
+        <img src="images/localchat.png" alt="LocalChat conversation with a local model" loading="lazy">
+      </a>
+      <div class="project-icon">💬</div>
+      <div class="project-name">LocalChat</div>
+      <p class="project-desc">
+        A private web chat app for local LLMs running through Ollama. Streams replies with markdown and code
+        highlighting, lets you switch models mid-conversation, takes file attachments, and shows token usage
+        and how much of the model fits on the GPU. Conversations are saved to SQLite.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Flask</span>
+        <span class="tag">Angular</span>
+        <span class="tag">Ollama</span>
+        <span class="tag">SQLite</span>
       </div>
     </div>
 
